@@ -1,27 +1,24 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {View, Text} from 'react-native'
-import matIcons from '../../Style/Icons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import {useStore} from 'easy-peasy'
-import {store} from '../../App'
+import {Button, TouchableRipple} from 'react-native-paper'
+import {useStoreState, useStoreActions} from 'easy-peasy'
 import STATUS from '../../Constants'
+import Path from '../../Navigation/Routes'
+import LoadingControlAction from '../../Components/LoadingControlAction';
 
-export default class Home extends React.Component{
-
-    componentDidMount(){
-        store.dispatch.login.getUserData()
-    }
-
-    render(){
-        const {login} = store.getState()
-        console.log('Login', login)
-        return(
-            <View style={{padding:20}}>
+export default Home = ({navigation}) =>{
+    const getUserData = useStoreActions(actions => actions.login.getUserData)
+    useEffect(()=>{getUserData()},[])
+    const {loginName, loginStatus} = useStoreState(state => ({loginName : state.login.name, loginStatus : state.login.status}))
+    return(
+        <LoadingControlAction bg='white' fixed={true}>
+        <View style={{padding:20}}>
+            <TouchableRipple onPress={()=>navigation.navigate(Path.PROFILE)} >
             <View style={{flex : 1, padding : 20, alignItems : 'center'}}>
-                <Text>{login.status == STATUS.SUCCESS ? login && login.name : "Hello Beetches"}</Text>
+                <Text>{loginStatus == STATUS.SUCCESS ? loginName : "Go To Profile"}</Text>
             </View>
-            </View>
-        )
-    }
-
+            </TouchableRipple>
+        </View>
+        </LoadingControlAction>
+    )
 }

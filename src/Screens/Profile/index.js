@@ -1,10 +1,11 @@
 import React from 'react'
 import {View, Text} from 'react-native'
-import matIcons from '../../Style/Icons'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
-
-
+import {Button, TouchableRipple} from 'react-native-paper'
+import {useStore} from 'easy-peasy'
+import {store} from '../../App'
+import STATUS from '../../Constants'
+import Path from '../../Navigation/Routes'
+import LoadingControlAction from '../../Components/LoadingControlAction';
 export default class Home extends React.Component{
 
     componentDidMount(){
@@ -19,11 +20,15 @@ export default class Home extends React.Component{
     render(){
 
         return(
+            <LoadingControlAction bg='white' fixed={true}>
             <View style={{padding:20}}>
-            <View style={{flex : 1, padding : 20, alignItems : 'center'}}>
-                <Text>{"Profile"}</Text>
+                <TouchableRipple onPress={()=>this.props.navigation.navigate(Path.HOME)} >
+                <View style={{flex : 1, padding : 20, alignItems : 'center'}}>
+                    <Text>{"Go To Home"}</Text>
+                </View>
+                </TouchableRipple>
             </View>
-            </View>
+            </LoadingControlAction>
         )
     }
 

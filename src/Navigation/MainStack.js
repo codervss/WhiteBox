@@ -1,11 +1,7 @@
 import { createStackNavigator } from "react-navigation";
-import {Text} from 'react-native'
 import styles from "./Styles";
 import Path from "./Routes";
-import Home from "../Screens/Home";
 import BottomTabs from './Bottomtabs'
-import React from 'react'
-import MatIcons from '../Style/Icons'
 
 export default createStackNavigator(
 	{
@@ -14,7 +10,6 @@ export default createStackNavigator(
 			navigationOptions: {
 				headerStyle: styles.header,
 				headerTitle: "HOME",
-				// headerRight: <Text>Hi</Text>,
 				headerTitleStyle: {
 					color: "white",
 					width: 100,

@@ -34,14 +34,9 @@ const apiMonitor = response => {
 	// add monitor for logging api response
 	api.addMonitor(apiMonitor);
 
-	// const setAuthorizationHeader = access_token =>
-	// 	api.setHeader("Authorization", "Bearer " + access_token);
-
-    // const loginUser = payload => api.post(URIS.LOGIN, payload);
     const getUserData = payload => api.get(URIS.USER_DATA)
 	//kickoff our api functions
 	return {
-		// client modifiers
 		// setAuthorizationHeader,
 		// api call functions
 		getUserData

@@ -1,11 +1,11 @@
 import {createSwitchNavigator} from 'react-navigation'
 import Path from './Routes'
 import MainStack from './MainStack'
-import React from 'react'
 
 export default PrimaryNav = createSwitchNavigator(
 	{
-		[Path.MAIN_APP]: MainStack,
+		[Path.MAIN_APP]: MainStack
+		// headerRight: <Text>Hi</Text>,tack,
 	},
 	{
 		// Default config for all screens

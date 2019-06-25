@@ -11,12 +11,13 @@ const actions={
 
 const thunks = {
     
-    login : thunk(async(actions, payload) =>{
+    login : thunk(async(actions, payload, {injections}) =>{
         actions.updateState({
             status: STATUS.FETCHING
         });
 
-        const res = await Api.call()
+        const api = injections
+        const res = await api.getUserData()
         if(res.ok){
             actions.updateState({
                 status: STATUS.SUCCESS

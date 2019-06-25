@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { action, createStore, StoreProvider, useStore, useActions } from 'easy-peasy';
 import {createAppContainer} from 'react-navigation'
+import logger from 'redux-logger'
 import appStore from './Store'
 import AppNavigator from './Navigation/index'
 import Api from './Api'
@@ -27,9 +28,9 @@ const theme = {
   },
 };
 
-export const store = createStore(appStore)
-
 export const apiClient = Api();
+
+export const store = createStore(appStore, {middleware:[logger], injections : {apiClient}})
 
 const AppContainer = createAppContainer(AppNavigator)
 
@@ -55,22 +56,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
